@@ -12,19 +12,18 @@
 
 
 
-				<form>
+				<form (ngSubmit)="submitComment()">
 					<div class="form-group">
 
-						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Username">
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Username" [(ngModel)]="model.username" name="username">
 					</div>
 					<div class="form-group">
 
-						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="model.password" name="password">
 					</div>
 
 
-					<p><button type="button" class="btn btn-success sign-fo">Submit</button>
-						<button type="button" class="btn btn-success sign-fo">Reset</button>
+					<p><button type="submit" class="btn btn-success sign-fo">Login</button>
 
 
 					</p>

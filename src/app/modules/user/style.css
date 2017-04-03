@@ -2,7 +2,9 @@
 /* CSS Document */
 
 
-
+.container{
+	width: 100% !important;
+}
 
 
 

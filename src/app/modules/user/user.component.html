@@ -2,48 +2,59 @@
 <div class="login-bg">
   <div class="col-md-4 col-sm-4 text-l"></div>
   <div class="col-md-4 col-sm-4">
-    <h1>User Details</h1>
+    <h1>User Management</h1>
   </div>
   <div class="col-md-4 col-sm-4 text-r">
     <div class="btn-group" role="group" aria-label="...">
- <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     RO, Days Left:15
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" (click)="showStyle = !showStyle;">
+     {{loginData.name}}, Days Left:{{loginData.daysLeft}}
       <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">LogOut</a></li>
-    
+    <ul class="dropdown-menu" [style.display]="getStyle()">
+      <li><a (click)="logout()">LogOut</a></li>
     </ul>
   </div>
 </div>
+  <!-- <ngb-dropdown [open]="isOpen">
+    <button id="dropdown-button" class="btn btn-default dropdown-toggle" (click)="toggleLogoutDropdown()">
+      RO, Days Left:15
+      <span class="caret"></span>
+    </button>
+     <ngb-dropdown-menu aria-labelledby="dropdown-button">
+      <ul class="dropdown-menu">
+        <li><a href="#">LogOut</a></li>
+      </ul>
+     </ngb-dropdown-menu>
+  </ngb-dropdown> -->
+
   </div>
   <div class="clearfix"></div>
 </div>
 <div class="match-bg mar-bott30 mar-top20">
   <div class="container   ">
     <div class="row">
-      <form>
+      <form (ngSubmit)="submitUserForm()">
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="User Nane:">
+            <input type="email" class="form-control" id="exampleInputEmail1" name="username" placeholder="Username" [(ngModel)]="user.username">
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Password:">
-          </div>
-        </div>
-        
-        <div class="col-md-3 col-sm-6">
-          <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Name:">
+            <input type="email" class="form-control" id="exampleInputEmail1" name="password" placeholder="Password">
           </div>
         </div>
         
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Mobile:">
+            <input type="email" class="form-control" id="exampleInputEmail1" name="name" placeholder="Name">
+          </div>
+        </div>
+        
+        <div class="col-md-3 col-sm-6">
+          <div class="form-group">
+            <input type="email" class="form-control" id="exampleInputEmail1" name="mobile" placeholder="Mobile">
           </div>
         </div>
         
@@ -55,7 +66,7 @@
          <i class="fa fa-calendar">
          </i>
         </div>
-        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+        <input class="form-control" id="date" name="date" placeholder="ExpiryDate" name="expirydate"type="text"/>
        </div>         
            <!--<input  type="date" class="form-control" id="exampleInputEmail1" placeholder="Expiry Date:">-->
           </div>
@@ -66,22 +77,33 @@
         
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Status:">
+            <select name="status" class="form-control">
+               <option>Status</option>
+               <option value="1">InActive</option>
+               <option value="0">Active</option>
+            </select>
           </div>
         </div>
         
         
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Role:">
+            <select name="role" class="form-control">
+               <option>Role</option>
+               <option value="1">Admin</option>
+               <option value="2">Premium User</option>
+               <option value="3">Free User</option>
+            </select>
           </div>
         </div>
         
         <div class="col-md-3 col-sm-6">
-          <div class="checkbox">
-            <label>
-            <input type="checkbox">
-            Allow Commenty </label>
+          <div class="form-group">
+            <select name="commentry" class="form-control">
+               <option>Allow Commentry</option>
+               <option value="1">Yes</option>
+               <option value="0">No</option>
+            </select>
           </div>
         </div>
         
@@ -89,8 +111,8 @@
           <div class="form-group">
           
           
-            <button type="button" class="btn btn-success okbutt">Submit</button>
-            <button type="button" class="btn btn-success okbutt">Reset</button>
+            <button type="submit" class="btn btn-success okbutt">Submit</button>
+            <button type="reset" class="btn btn-success okbutt">Reset</button>
             
             
           </div>
@@ -113,114 +135,24 @@
             <tr>
               <th width="3%" class="tablbg text-center">ID </th>
               <th width="11%" class="tablbg text-center">User Name</th>
-              <th width="14%" class="tablbg text-center">Password</th>
+              <th width="14%" class="tablbg text-center">Mobile</th>
               <th width="18%" class="tablbg text-center">Register Date</th>
               <th width="9%" class="tablbg text-center">Days Left</th>
               <th width="10%" class="tablbg text-center">Allow</th>
-              <th width="19%" class="tablbg text-center">Last Login Date Time</th>
+              <th width="19%" class="tablbg text-center">Expiry Date Time</th>
               <th width="16%" class="tablbg text-center">&nbsp;</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td class="tablbg" >555</td>
-              <td class="info" >Dev</td>
-              <td class="info" >frg125v</td>
-              <td class="info" >16/03/2019 12:30:20</td>
-              <td class="info" >5</td>
-              <td class="info" >false</td>
-              <td class="info" >18/03/2017 12:30:20</td>
-              <td class="info" ><a href="#">Update</a> &nbsp;&nbsp; <a href="#">Delete</a></td>
+            <tr *ngFor="let user of userList">
+              <td class="tablbg" >{{user.userId}}</td>
+              <td class="info" >{{user.username}}</td>
+              <td class="info" >{{user.mobile}}</td>
+              <td class="info" >{{user.createdOn | date:'dd-MM-yyyy'}}</td>
+              <td class="info" >{{user.daysLeft}}</td>
+              <td class="info" >{{user.isCommentry ? "true":"false"}}</td>
+              <td class="info" >{{user.expiryOn | date:'dd-MM-yyyy'}}</td>
+              <td class="info" ><button (click)="updateUser(user)"></button>&nbsp;&nbsp; <a href="#">Delete</a></td>
             </tr>
           </tbody>
         </table>
